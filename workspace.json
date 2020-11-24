@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "projects": {
+    "red": {
+      "root": "apps/red",
+      "sourceRoot": "apps/red",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/next:build",
+          "options": {
+            "root": "apps/red",
+            "outputPath": "dist/apps/red"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "red:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "red:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "builder": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "red:build:production"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/red/**/*.{ts,tsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/red/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "red-e2e": {
+      "root": "apps/red-e2e",
+      "sourceRoot": "apps/red-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/red-e2e/cypress.json",
+            "tsConfig": "apps/red-e2e/tsconfig.e2e.json",
+            "devServerTarget": "red:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "red:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/red-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "schematics": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "red"
+}
