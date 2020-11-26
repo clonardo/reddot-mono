@@ -11,7 +11,8 @@
           "builder": "@nrwl/next:build",
           "options": {
             "root": "apps/red",
-            "outputPath": "dist/apps/red"
+            "outputPath": "dist/apps/red",
+            "styles": ["apps/red/styles/index.scss"]
           },
           "configurations": {
             "production": {}

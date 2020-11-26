@@ -1,95 +1,71 @@
 import React from 'react';
+import {
+  Button,
+  Container,
+  Card,
+  Alert,
+  CardColumns,
+  Spinner
+} from 'react-bootstrap';
+import styled from '@emotion/styled';
+import { MainLayout } from '../components';
 
-import styles from './index.module.scss';
+const Heading = styled.h1`
+  font-size: 18px;
+`;
 
 export function Index() {
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./index.scss file.
-   */
   return (
-    <div className={styles.page}>
-      <h2>Resources &amp; Tools</h2>
-      <p>Thank you for using and showing some ♥ for Nx.</p>
-      <div className="flex github-star-container">
-        <a
-          href="https://github.com/nrwl/nx"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {' '}
-          If you like Nx, please give it a star:
-          <div className="github-star-badge">
-            <img src="/star.svg" className="material-icons" alt="" />
-            Star
-          </div>
-        </a>
-      </div>
-      <p>Here are some links to help you get started.</p>
-      <ul className="resources">
-        <li className="col-span-2">
-          <a
-            className="resource flex"
-            href="https://connect.nrwl.io/app/courses/nx-workspaces/intro"
-          >
-            Nx video course
-          </a>
-        </li>
-        <li className="col-span-2">
-          <a
-            className="resource flex"
-            href="https://nx.dev/react/getting-started/what-is-nx"
-          >
-            Nx video tutorial
-          </a>
-        </li>
-        <li className="col-span-2">
-          <a
-            className="resource flex"
-            href="https://nx.dev/react/tutorial/01-create-application"
-          >
-            Interactive tutorial
-          </a>
-        </li>
-        <li className="col-span-2">
-          <a className="resource flex" href="https://connect.nrwl.io/">
-            <img
-              height="36"
-              alt="Nrwl Connect"
-              src="https://connect.nrwl.io/assets/img/CONNECT_ColorIcon.png"
-            />
-            <span className="gutter-left">Nrwl Connect</span>
-          </a>
-        </li>
-      </ul>
-      <h2>Next Steps</h2>
-      <p>Here are some things you can do with Nx.</p>
-      <details open>
-        <summary>Add UI library</summary>
-        <pre>{`# Generate UI lib
-nx g @nrwl/react:lib ui
+    <MainLayout>
+      <Container>
+        <Container className="mt-4 px-0 d-flex justify-content-between align-items-center">
+          <Heading>Products</Heading>
+        </Container>
 
-# Add a component
-nx g @nrwl/react:component xyz --project ui`}</pre>
-      </details>
-      <details>
-        <summary>View dependency graph</summary>
-        <pre>{`nx dep-graph`}</pre>
-      </details>
-      <details>
-        <summary>Run affected commands</summary>
-        <pre>{`# see what's been affected by changes
-nx affected:dep-graph
+        <Container className="px-0 mt-4 mb-5">
+          <CardColumns>
+            <Card>
+              {/* <Card.Img variant="top" src={product.image} /> */}
+              <Card.Body>
+                <Card.Title>Title</Card.Title>
+                <Card.Text>Description</Card.Text>
+                <Card.Text>{`Quantity: ${42}`}</Card.Text>
+                <Container className="px-0 d-flex justify-content-between">
+                  <Card.Text>Card Content</Card.Text>
+                  <Card.Text>{`Status: Amazing`}</Card.Text>
+                  <Button
+                    variant="info"
+                    size="lg"
+                    className="mr-2"
+                    onClick={() => {
+                      return false;
+                    }}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="danger"
+                    size="lg"
+                    onClick={() => {
+                      return false;
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </Container>
+              </Card.Body>
 
-# run tests for current changes
-nx affected:test
-
-# run e2e tests for current changes
-nx affected:e2e
-`}</pre>
-      </details>
-    </div>
+              <Card.Footer className="d-flex justify-content-end">
+                {/* <Link href={`/product/${product.id}`}>
+                        <a>View Details</a>
+                      </Link> */}
+                Footer
+              </Card.Footer>
+            </Card>
+          </CardColumns>
+        </Container>
+      </Container>
+    </MainLayout>
   );
 }
 
