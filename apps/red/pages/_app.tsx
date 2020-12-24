@@ -1,8 +1,10 @@
 import React from 'react';
+// import { Layout } from 'antd';
+import 'antd/dist/antd.css';
+import '../styles/index.scss';
 import { PageTransition } from 'next-page-transitions';
 import { AppProps } from 'next/app';
 import { BasicLoader } from '../components/loaders';
-import '../styles/index.scss';
 
 const TIMEOUT = 400;
 
@@ -11,6 +13,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
     <>
       <PageTransition
         timeout={TIMEOUT}
+        id="transitionWrapper"
         classNames="page-transition"
         loadingComponent={<BasicLoader />}
         loadingDelay={500}

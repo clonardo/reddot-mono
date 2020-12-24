@@ -10,7 +10,15 @@
     "target": "es2015",
     "module": "commonjs",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom", "ES5", "ES2018.Promise", "ES2020.Promise"],
+    "lib": [
+      "es2017",
+      "dom",
+      "ES5",
+      "ES2018.Promise",
+      "ES2020.Promise",
+      "dom.iterable",
+      "esnext"
+    ],
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "skipLibCheck": true,

@@ -1,4 +1,5 @@
 {
-  "presets": ["@nrwl/web/babel"],
-  "babelrcRoots": ["*"]
+  "presets": ["@nrwl/web/babel", "next/babel"],
+  "babelrcRoots": ["*"],
+  "plugins": [["@babel/plugin-proposal-decorators", { "legacy": true }]]
 }

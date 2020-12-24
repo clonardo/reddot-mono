@@ -1,17 +1,18 @@
-import { Navbar, Container } from 'react-bootstrap';
+import { TopNavMenu } from './top-nav-menu';
+import { Layout } from 'antd';
+const { Content, Sider } = Layout;
 import Head from 'next/head';
-import styled from '@emotion/styled';
-import { Global, css } from '@emotion/react';
+// import { Global, css } from '@emotion/react';
 import { AppFooter } from './footer';
 
 export const MainLayout = ({ children }): JSX.Element => (
-  <div className="d-flex flex-column h-100">
+  <Layout className="main-layout-section">
     <Head>
       <title>CMS</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <Global
+    {/* <Global
       styles={css`
         html,
         body,
@@ -19,26 +20,12 @@ export const MainLayout = ({ children }): JSX.Element => (
           height: 100%;
         }
       `}
-    />
-
-    <Main>
-      <Header />
-      {children}
-    </Main>
+    /> */}
+    <TopNavMenu />
+    <Layout hasSider={true} style={{ flex: '1 0 auto' }}>
+      <Sider>left sidebar</Sider>
+      <Content>{children}</Content>
+    </Layout>
     <AppFooter />
-  </div>
-);
-
-const Main = styled.main`
-  flex: 1 0 auto;
-`;
-
-const Header = () => (
-  <Container className="bg-light px-0" fluid>
-    <Container>
-      <Navbar bg="transparent" expand="lg" className="px-0">
-        <Navbar.Brand href="/">CMS</Navbar.Brand>
-      </Navbar>
-    </Container>
-  </Container>
+  </Layout>
 );

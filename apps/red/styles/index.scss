@@ -1,3 +1,14 @@
 @import './variables';
 
-@import '~bootstrap/scss/bootstrap.scss';
+// @import '~bootstrap/scss/bootstrap.scss';
+
+div#__next {
+  height: 100%;
+}
+// transitionWrapper
+div.page-transition-enter-done,
+div.page-transition-exit {
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+}

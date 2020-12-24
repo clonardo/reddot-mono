@@ -13,16 +13,7 @@ export default class CustomDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-          {/* <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-            integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
-            crossOrigin="anonymous"
-          /> */}
+          <meta name="referrer" content="no-referrer" />
           <style>{`
             .page {
               height: 100vh;
@@ -32,6 +23,13 @@ export default class CustomDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <style
+            id="transition-without-ssr"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: ' *, *::before, *::after { transition: none!important; }'
+            }}
+          />
         </body>
       </Html>
     );
