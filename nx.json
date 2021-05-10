@@ -1,34 +1,26 @@
 {
-  "npmScope": "reddot-mono",
-  "affected": {
-    "defaultBase": "master"
-  },
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "rdd",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
   "projects": {
-    "red": {
-      "tags": []
-    },
-    "red-e2e": {
-      "tags": [],
-      "implicitDependencies": ["red"]
-    }
+    "red": { "tags": [] },
+    "red-e2e": { "tags": [], "implicitDependencies": ["red"] },
+    "api": { "tags": [] },
+    "backend-bot": { "tags": [] },
+    "common-utils": { "tags": [] },
+    "backend-shared": { "tags": [] }
   }
 }

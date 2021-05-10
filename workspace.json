@@ -1,5 +1,22 @@
 {
   "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "defaultProject": "red",
+  "schematics": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  },
   "projects": {
     "red": {
       "root": "apps/red",
@@ -22,7 +39,8 @@
           "builder": "@nrwl/next:server",
           "options": {
             "buildTarget": "red:build",
-            "dev": true
+            "dev": true,
+            "proxyConfig": "apps/red/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -77,23 +95,133 @@
           }
         }
       }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
-  "schematics": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps\\api\\src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "watch": false,
+              "externalDependencies": "all",
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "inspect": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          },
+          "configurations": {
+            "development": {
+              "inspect": false
+            },
+            "production": {
+              "inspect": false,
+              "watch": false
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api"],
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
       }
     },
-    "@nrwl/next": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint"
+    "backend-bot": {
+      "root": "libs/backend-bot",
+      "sourceRoot": "libs/backend-bot/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/backend-bot/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/backend-bot"],
+          "options": {
+            "jestConfig": "libs/backend-bot/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "common-utils": {
+      "root": "libs/common-utils",
+      "sourceRoot": "libs/common-utils/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/common-utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/common-utils"],
+          "options": {
+            "jestConfig": "libs/common-utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "backend-shared": {
+      "root": "libs/backend-shared",
+      "sourceRoot": "libs/backend-shared/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/backend-shared/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/backend-shared"],
+          "options": {
+            "jestConfig": "libs/backend-shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
       }
     }
-  },
-  "defaultProject": "red"
+  }
 }

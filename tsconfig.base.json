@@ -23,7 +23,12 @@
     "baseUrl": ".",
     "skipLibCheck": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@rdd/backend-bot": ["libs/backend-bot/src/index.ts"],
+      "@rdd/common-utils": ["libs/common-utils/src/index.ts"],
+      "@rdd/backend-shared": ["libs/backend-shared/src/index.ts"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", "types/**.*.d.ts"],
   "exclude": ["node_modules", "tmp", "./jest.config.js"]
